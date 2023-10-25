@@ -3,7 +3,7 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Movie from "./components/Movie";
 import FavMovie from "./components/FavMovie";
 import { useSelector, useDispatch } from "react-redux";
-import { addFavorites } from "./actions/favActions";
+import { addFavorites } from "./store/actions/favActions";
 import { movies } from "./movies";
 
 function App() {
@@ -13,6 +13,13 @@ function App() {
   function sonrakiFilm() {
     setSira(sira + 1);
   }
+  function oncekiFilm() {
+    setSira(sira - 1);
+  }
+  function basaDon(){
+    setSira(0);
+  }
+ 
   const dispatch = useDispatch();
   const handleAddFavorites = () =>{
   dispatch(addFavorites(movies[sira]))
@@ -32,6 +39,21 @@ function App() {
           <Movie sira={sira} />
 
           <div className="flex gap-3 justify-end py-3">
+          {sira !== 0 &&
+            <button
+              onClick={basaDon}
+              className="disable:opacity-40 select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+            >
+              Başa Dön
+            </button>
+            }
+            {sira !== 0 &&
+          <button
+              onClick={oncekiFilm}
+              className="disable:opacity-40 select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+            >Önceki
+            </button>
+            }
             <button
               onClick={sonrakiFilm}
               className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"

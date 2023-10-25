@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteFavorites } from "../actions/favActions";
+import { deleteFavorites } from "../store/actions/favActions";
 export default function FavMovie({ title, id }) {
   const dispatch = useDispatch();
   const handleDeleteFavorite = () =>{
