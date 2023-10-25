@@ -3,6 +3,7 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Movie from "./components/Movie";
 import FavMovie from "./components/FavMovie";
 
+
 function App() {
   const [sira, setSira] = useState(0);
   const favMovies = [];
