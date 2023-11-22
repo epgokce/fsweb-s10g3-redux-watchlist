@@ -3,10 +3,12 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Movie from "./components/Movie";
 import FavMovie from "./components/FavMovie";
 import { useDispatch, useSelector } from "react-redux";
-import addfavMovieAction from "../src/store/actions/favMovieReducerAction";
-
+import {
+  nextSiraAction,
+  prevSiraAction,
+} from "./store/actions/movieReducerAction";
 function App() {
-  const [sira, setSira] = useState(0);
+  const sira= useSelector((store) => store.movies.sira);
   const favMovies = useSelector((store) => store.favMovies);
   const dispatch = useDispatch();
 
@@ -15,8 +17,14 @@ function App() {
   }
 
   const addFavListHandler = () => {
-    dispatch(addfavMovieAction(movie));
+    dispatch(nextSiraAction());
   };
+
+  function öncekiFilm() {
+    dispatch(prevSiraAction());
+  }
+
+  const addFavListHandler = () => {};
 
 
   return (
@@ -34,6 +42,12 @@ function App() {
           <Movie sira={sira} />
 
           <div className="flex gap-3 justify-end py-3">
+          <button
+              onClick={öncekiFilm}
+              className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+            >
+              Önceki
+            </button>
             <button
               onClick={sonrakiFilm}
               className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
