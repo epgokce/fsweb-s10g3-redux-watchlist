@@ -3,6 +3,7 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Movie from "./components/Movie";
 import FavMovie from "./components/FavMovie";
 import { useDispatch, useSelector } from "react-redux";
+import addfavMovieAction from "../src/store/actions/favMovieReducerAction";
 
 function App() {
   const [sira, setSira] = useState(0);
@@ -13,7 +14,9 @@ function App() {
     setSira(sira + 1);
   }
 
-  const addFavListHandler = () => {};
+  const addFavListHandler = () => {
+    dispatch(addfavMovieAction(movie));
+  };
 
 
   return (
